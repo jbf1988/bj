@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+	lineStyle:{
+			color:'source'
+	},
+    tooltip: {
+        show:true,
+		trigger: 'item',
+        triggerOn: 'mousemove'
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+	series: {
+        type: 'sankey',
+        layout:'none',
+		height:120,
+		width:550,
+		layoutlterations:0,
+        data: [
+    {name: '直排COD', value: 9144.9}, 
+    {name: '错接COD', value: 15122.9}, 
+    {name: '塔子湖分散处理', value: 1412.6},
+    {name: '铁路桥地下水厂', value: 3285.0},
+    {name: '现有泵站提升', value: 15768.0},
+    {name: '晴天总负荷', value: 24267.7},
+	{name: '晴天工程削减', value: 20465.6},
+    {name: '晴天剩余COD', value: 3802.2},
+    {name: '晴天环境容量', value: 2336.0},
+    {name: '晴天超容部分', value: 1466.2}
+],
+        links: [
+    {source: '直排COD', target: '晴天总负荷', value: 9144.9},
+    {source: '错接COD', target: '晴天总负荷', value: 15122.9},
+    {source: '晴天工程削减', target: '塔子湖分散处理', value: 1412.6},
+    {source: '晴天工程削减', target: '铁路桥地下水厂', value: 3285.0},
+    {source: '晴天工程削减', target: '现有泵站提升', value: 15768.0},
+    {source: '晴天总负荷', target: '晴天工程削减', value: 20465.6},	
+    {source: '晴天总负荷', target: '晴天剩余COD', value: 3802.2},
+    {source: '晴天剩余COD', target: '晴天环境容量', value: 2336.0},
+    {source: '晴天剩余COD', target: '晴天超容部分', value: 1466.2}
+]
+    }
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
